@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { Card, Col, Row, Container, Form, Button } from "react-bootstrap";
-import DisplayCount from "./DisplayCount";
+import { useDispatch } from 'react-redux'; // Import useDispatch hook
+import { addTodo } from '../redux/actions/todo';
 
 const AddToDo = () => {
+  const dispatch = useDispatch(); // Get the dispatch function from Redux
+
   const [todo, setToDo] = useState({
     title: "",
     description: ""
@@ -16,15 +19,16 @@ const AddToDo = () => {
     setToDo({ ...todo, description: event.target.value });
   };
 
-  const handleSubmit=(event)=>{
+  const handleSubmit = (event) => {
     event.preventDefault();
-    //add todo in store
-    console.log(todo);
+    // Dispatch the action using the useDispatch hook
+    dispatch(addTodo(todo));
     setToDo({
-      title:'',
-      description:''
-    })
-  }
+      title: '',
+      description: ''
+    });
+  };
+
   return (
     <Container>
       <Row>
@@ -32,7 +36,6 @@ const AddToDo = () => {
           <Card>
             <Card.Body>
               <h3>Add ToDo here!!</h3>
-              <DisplayCount/>
               {/* form */}
               <Form onSubmit={handleSubmit}>
                 {/* title */}

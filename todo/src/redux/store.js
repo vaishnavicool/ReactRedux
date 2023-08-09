@@ -1,9 +1,10 @@
-import {createstore, combinereducer}  from 'react-redux'
-import todoReducer from './reducers/todo-reducer'
-import { combineReducers } from 'redux'
+import { createStore, combineReducers } from 'redux';
+import todoReducer from './reducers/todo-reducer';
 
-const rootReducer=combineReducers({todoReducer})
+const rootReducer = combineReducers({
+    todoReducer
+});
 
-const store = createstore(rootReducer)
+const store = createStore(rootReducer);
 
 export default store;

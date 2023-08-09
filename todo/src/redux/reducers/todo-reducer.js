@@ -7,17 +7,18 @@ export default (state = initialState, action) => {
     case ADD_TODO:
       return [...state, action.payload];
     case DELETE_TODO:
-      const newState = state.filter((todo) => todo.id !== action.payload);
-      return newState;
+      return state.filter(todo => todo.id !== action.payload);
     case UPDATE_TODO:
-        const updatedState=state.map(todo=>{
-            if(todo.id==action.payload.todoId){
-                todo.title=action.payload.todo.title
-                todo.description=action.payload.todo.description
-            }
-            return todo
-        })
-return updatedState
+      return state.map(todo => {
+        if (todo.id === action.payload.todoId) {
+          return {
+            ...todo,
+            title: action.payload.todo.title,
+            description: action.payload.todo.description
+          };
+        }
+        return todo;
+      });
     default:
       return state;
   }

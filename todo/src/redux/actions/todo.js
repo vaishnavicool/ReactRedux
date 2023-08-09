@@ -1,19 +1,19 @@
-import { ADD_TODO, DELETE_TODO } from "./action-types";
+import { ADD_TODO, DELETE_TODO, UPDATE_TODO } from "./action-types";
 
-//add to do
-export const ADD_TODO=(todo)=>({
-    type:ADD_TODO,
-    payload:todo
-})
+// add to do
+export const addTodo = (todo) => ({
+    type: ADD_TODO,
+    payload: todo
+});
 
-//delete todo
-export const DELETE_TODO=(id)=>({
-    type:DELETE_TODO,
-    payload:id
-})
+// delete todo
+export const deleteTodo = (id) => ({
+    type: DELETE_TODO,
+    payload: id
+});
 
-//update todo
-export const UPDATE_TODO=(todo,id)=>({
-    type:UPDATE_TODO,
-    payload:{todo:todo,todoId:id}
-})
+// update todo
+export const updateTodo = (todo, id) => ({
+    type: UPDATE_TODO,
+    payload: { todo: todo, todoId: id }
+});
