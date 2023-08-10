@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Card, Col, Row, Container, Form, Button } from "react-bootstrap";
 import { useDispatch } from 'react-redux'; // Import useDispatch hook
 import { addTodo } from '../redux/actions/todo';
+import { v4 as uuidv4 } from 'uuid';
 
 const AddToDo = () => {
   const dispatch = useDispatch(); // Get the dispatch function from Redux
@@ -21,11 +22,17 @@ const AddToDo = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    // Create a new todo object with the id field using uuidv4
+    const newTodo = {
+      ...todo,
+      id: uuidv4()
+    };
     // Dispatch the action using the useDispatch hook
-    dispatch(addTodo(todo));
+    dispatch(addTodo(newTodo));
     setToDo({
       title: '',
-      description: ''
+      description: '',
+      id: ''
     });
   };
 
@@ -55,7 +62,7 @@ const AddToDo = () => {
                   <Form.Control
                     as={"textarea"}
                     type="text"
-                    placeholder="Enter task"
+              placeholder="Enter task"
                     value={todo.description}
                     onChange={handleDescriptionChange}
                   />
